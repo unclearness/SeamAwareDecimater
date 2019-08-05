@@ -1,3 +1,6 @@
+#include <cassert>
+#include <iostream>
+
 #include <igl/circulation.h>
 #include <igl/edge_collapse_is_valid.h>
 #include "collapse_edge_seam.h"
@@ -262,7 +265,7 @@ bool try_collapse_5d_Edge(
                 //         FTC is also augmented with a vertex to infinity.
                 // if( f < FT.rows() )
                 {
-                    assert( seam_edges.count(d) or FT(f,v) == d_tc );
+                    assert( seam_edges.count(d) || FT(f,v) == d_tc );
                     if( !collapse_on_seam ) {
                         if( FT(f,v) == d_tc ) FT(f,v) = s_tc;
                     }

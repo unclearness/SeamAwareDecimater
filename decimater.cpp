@@ -168,13 +168,21 @@ bool decimate_down_to(
 }
 
 int main( int argc, char* argv[] ) {
+  if (argc < 2) {
+    usage(argv[0]);
+    return 1;
+    }
+
     std::vector<std::string> args( argv + 1, argv + argc );
     std::string strictness;
     int seam_aware_degree = int( SeamAwareDegree::Seamless );
-    const bool found_strictness = pythonlike::get_optional_parameter( args, "--strict", strictness );	
-	if ( found_strictness ) {
-		seam_aware_degree = atoi(strictness.c_str());
-	}
+#if 0
+    const bool found_strictness = pythonlike::get_optional_parameter(args, "--strict", strictness);
+    if (found_strictness) {
+      seam_aware_degree = atoi(strictness.c_str());
+    }
+#endif // 0
+
     
     if( args.size() != 3 && args.size() != 4 )	usage( argv[0] );
     std::string input_path, command, command_parameter;
